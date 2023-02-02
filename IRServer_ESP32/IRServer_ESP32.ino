@@ -7,8 +7,8 @@
 #include <mdns.h>
 #include <WiFi.h>
 
-const char* kSsid = "IOT_Devices";
-const char* kPassword = "TurnMe0n!";
+const char* kSsid = "XXXXXXXX";
+const char* kPassword = "XXXXXXXXX";
 
 #if defined(ESP8266)
 ESP8266WebServer server(80);
