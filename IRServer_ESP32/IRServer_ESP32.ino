@@ -7,8 +7,8 @@
 #include <mdns.h>
 #include <WiFi.h>
 
-const char* kSsid = "XXXXXXXX";
-const char* kPassword = "XXXXXXXXX";
+const char* kSsid = "Your SSID";
+const char* kPassword = "Your SSID PSK";
 
 #if defined(ESP8266)
 ESP8266WebServer server(80);
@@ -34,7 +34,7 @@ void handleRoot() {
                 "</head>" \
                 "<body>" \
                   "<h1>Control All IR Devices with " HOSTNAME ".</h1>" \
-                  "<p><a href=\"ir?code=33464415\">OUT1 IN1</a></p>" \
+                  "<p><a href=\"ir?code=33464415\">OUT1 IN1</a></p>" \ #replace these codes with your codes
                   "<p><a href=\"ir?code=33448095\">OUT1 IN2</a></p>" \
                   "<p><a href=\"ir?code=33460335\">OUT1 IN3</a></p>" \
                   "<p><a href=\"ir?code=33444015\">OUT1 IN4</a></p>" \
@@ -51,6 +51,7 @@ void handleIr() {
     if (server.argName(i) == "code") {
       uint32_t code = strtoul(server.arg(i).c_str(), NULL, 10);
 #if SEND_NEC
+      irsend.sendNEC(code, 32);
       irsend.sendNEC(code, 32);
 #endif  // SEND_NEC
     }
